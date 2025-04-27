@@ -18,11 +18,19 @@ function App() {
 
   return (
     <div className="App">
-      <Book
+      {books.map((book, index) => (
+        <Book
+          key={book.id}
+          title={book.title}
+          author={book.author}
+          description={book.description}
+        />
+      ))}
+      {/* <Book
         title={books[0].title}
         author={books[0].author}
         description={books[0].description}
-      />
+      /> */}
       {/* <HelloWorld /> */}
     </div>
   );
@@ -34,13 +42,13 @@ export default App;
 //   return <p>Hello World, Rajeev !</p>;
 // }
 
-function Book(props) {
-  console.log(props);
+function Book({ title, author, description }) {
+  // console.log(props);
   return (
     <div>
-      <h2>Title: {props.title}</h2>
-      <h3>by {props.author}</h3>
-      <p>Description: {props.description}</p>
+      <h2>Title: {title}</h2>
+      <h3>by {author}</h3>
+      <p>Description: {description}</p>
     </div>
   );
 }
