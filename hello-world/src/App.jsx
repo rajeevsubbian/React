@@ -1,35 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="App">
+      <Book />
+      {/* <HelloWorld /> */}
+    </div>
+  );
 }
 
-export default App
+export default App;
+
+// function HelloWorld() {
+//   return <p>Hello World, Rajeev !</p>;
+// }
+
+function Book() {
+  const bookName = "Effective Jave"
+  const author = "Joshua Bloch"
+  const description = "Effective Java is a programming book that provides best practices for writing high-quality Java code. It covers topics such as object creation, methods, and concurrency, and is widely regarded as a must-read for Java developers."
+  return (
+    <div>
+      <h2>Book title : {bookName}</h2>
+      <h3>By Author : {author}</h3>
+      <p>Book description : {description}</p>
+    </div>
+  );
+}
