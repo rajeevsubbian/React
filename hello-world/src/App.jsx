@@ -1,3 +1,5 @@
+import Book from "../components/Book";
+import UserProfile from "../components/UserProfile";
 import "./App.css";
 
 function App() {
@@ -18,7 +20,12 @@ function App() {
 
   return (
     <div className="App">
-      {books.map((book, index) => (
+      <UserProfile
+        name="Rajeev Subbian"
+        email="rajeev.s@email.com"
+        bio="Software Engineer"
+      />
+      {books.map((book) => (
         <Book
           key={book.id}
           title={book.title}
@@ -42,13 +49,13 @@ export default App;
 //   return <p>Hello World, Rajeev !</p>;
 // }
 
-function Book({ title, author, description }) {
-  // console.log(props);
-  return (
-    <div>
-      <h2>Title: {title}</h2>
-      <h3>by {author}</h3>
-      <p>Description: {description}</p>
-    </div>
-  );
-}
+// function Book({ title, author, description }) {
+//   // console.log(props);
+//   return (
+//     <div>
+//       <h2>Title: {title}</h2>
+//       <h3>by {author}</h3>
+//       <p>Description: {description}</p>
+//     </div>
+//   );
+// }
