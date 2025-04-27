@@ -1,9 +1,14 @@
 import "./App.css";
 
 function App() {
+  const bookName = "Effective Jave";
+  const author = "Joshua Bloch";
+  const description =
+    "Effective Java is a programming book that provides best practices for writing high-quality Java code.";
+
   return (
     <div className="App">
-      <Book />
+      <Book title={bookName} author={author} description={description} />
       {/* <HelloWorld /> */}
     </div>
   );
@@ -15,15 +20,13 @@ export default App;
 //   return <p>Hello World, Rajeev !</p>;
 // }
 
-function Book() {
-  const bookName = "Effective Jave"
-  const author = "Joshua Bloch"
-  const description = "Effective Java is a programming book that provides best practices for writing high-quality Java code. It covers topics such as object creation, methods, and concurrency, and is widely regarded as a must-read for Java developers."
+function Book(props) {
+  console.log(props);
   return (
     <div>
-      <h2>Book title : {bookName}</h2>
-      <h3>By Author : {author}</h3>
-      <p>Book description : {description}</p>
+      <h2>{props.title}</h2>
+      <h3>by {props.author}</h3>
+      <p>{props.description}</p>
     </div>
   );
 }
