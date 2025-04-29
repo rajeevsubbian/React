@@ -1,23 +1,9 @@
-import Book from "../components/Book";
-import UserProfile from "../components/UserProfile";
+import Book from "./components/Book";
+import UserProfile from "./components/UserProfile";
+import { booksData } from "./components/data";
 import "./App.css";
 
 function App() {
-  const books = [
-    {
-      id: 1,
-      title: "1984",
-      author: "George Orwell",
-      description: "A dystopian novel.",
-    },
-    {
-      id: 2,
-      title: "The Great Gatsby",
-      author: "F. Scott Fitzgerald",
-      description: "A novel set in the Jazz Age.",
-    },
-  ];
-
   return (
     <div className="App">
       <UserProfile
@@ -25,12 +11,14 @@ function App() {
         email="rajeev.s@email.com"
         bio="Software Engineer"
       />
-      {books.map((book) => (
+      {booksData.items.map((book, index) => (
         <Book
-          key={book.id}
-          title={book.title}
-          author={book.author}
-          description={book.description}
+          key={index}
+          title={book.volume.title}
+          author={book.volume.authors}
+          description={book.volume.description}
+          subtitle={book.volume.subtitle}
+          image={book.volume.image}
         />
       ))}
       {/* <Book
