@@ -1,5 +1,8 @@
+import { useState } from "react";
+
 function Book({ title, author, description, subtitle, image }) {
-  var isRead = false;
+  // var isRead = false;
+  const [isRead, setIsRead] = useState(false);
   // console.log(props);
   return (
     <div className="user-profile">
@@ -8,12 +11,7 @@ function Book({ title, author, description, subtitle, image }) {
       <h4>Subtitle: {subtitle}</h4>
       <h3>by {author}</h3>
       <p>Description: {description}</p>
-      <button
-        onClick={() => {
-          isRead = !isRead;
-          console.log("Status", isRead);
-        }}
-      >
+      <button onClick={() => setIsRead(!isRead)}>
         {isRead ? "Read" : "Unread"}
       </button>
     </div>
