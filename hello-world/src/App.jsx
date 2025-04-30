@@ -2,11 +2,13 @@ import Book from "./components/Book";
 import UserProfile from "./components/UserProfile";
 import { booksData } from "./components/data";
 import "./App.css";
+import RandomQuote from "./components/quotes_app/components/RandomQuote";
 
 function App() {
   return (
     <div className="App">
-      <UserProfile
+      <RandomQuote />
+      {/* <UserProfile
         name="Rajeev Subbian"
         email="rajeev.s@email.com"
         bio="Software Engineer"
@@ -20,7 +22,7 @@ function App() {
           subtitle={book.volume.subtitle}
           image={book.volume.image}
         />
-      ))}
+      ))} */}
       {/* <Book
         title={books[0].title}
         author={books[0].author}
