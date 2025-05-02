@@ -3,6 +3,7 @@ import UserProfile from "./components/UserProfile";
 import { booksData } from "./components/data";
 import "./App.css";
 import RandomQuote from "./components/quotes_app/components/RandomQuote";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
