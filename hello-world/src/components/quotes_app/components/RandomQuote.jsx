@@ -3,6 +3,7 @@ import { useState } from "react";
 
 function RandomQuote() {
   const [quote, setQuote] = useState("");
+  const [color, setColor] = useState("bg-dark");
 
   const quotes = [
     {
@@ -32,19 +33,37 @@ function RandomQuote() {
   function getRandomQuote() {
     const randomIndex = Math.floor(Math.random() * quotes.length);
     setQuote(quotes[randomIndex]);
+    setColor(getRandomColor());
 
     console.log(quotes[randomIndex]);
   }
 
+  function getRandomColor() {
+    const colors = [
+      "bg-secondary",
+      "bg-success",
+      "bg-danger",
+      "bg-warning",
+      "bg-info",
+      //   "bg-light",
+      "bg-dark",
+    ];
+    return colors[Math.floor(Math.random() * colors.length)];
+  }
+
   return (
-    <div>
-      <div className="user-profile">
-        <div>
-          <h5>Random Quote</h5>
-          <p>{quote.content}</p>
-          <i>Author: {quote.author}</i>
+    <div className="container mt-2">
+      <div className={`card text-white ${color}`}>
+        <div className="card-body">
+          <h5 className="card-title">Random Quote</h5>
+          <p className="card-text">"{quote.content}"</p>
+          <footer className="blockquote-footer text-white">
+            {quote.author}
+          </footer>
         </div>
-        <button onClick={getRandomQuote}>Get random quote</button>
+        <button className="btn btn-primary mt-3" onClick={getRandomQuote}>
+          Get random quote
+        </button>
       </div>
     </div>
   );
