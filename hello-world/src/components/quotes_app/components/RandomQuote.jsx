@@ -1,56 +1,7 @@
 import React from "react";
-import { useState } from "react";
+// import { useState } from "react";
 
-function RandomQuote() {
-  const [quote, setQuote] = useState("");
-  const [color, setColor] = useState("bg-dark");
-
-  const quotes = [
-    {
-      author: "Albert Einstein",
-      content:
-        "Life is like riding a bicycle. To keep your balance, you must keep moving.",
-    },
-    {
-      author: "Isaac Newton",
-      content:
-        "If I have seen further it is by standing on the shoulders of Giants.",
-    },
-    {
-      author: "Marie Curie",
-      content: "Be less curious about people and more curious about ideas.",
-    },
-    {
-      author: "Leonardo da Vinci",
-      content: "Learning never exhausts the mind.",
-    },
-    {
-      author: "Aristotle",
-      content: "The more you know, the more you realize you don't know.",
-    },
-  ];
-
-  function getRandomQuote() {
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    setQuote(quotes[randomIndex]);
-    setColor(getRandomColor());
-
-    console.log(quotes[randomIndex]);
-  }
-
-  function getRandomColor() {
-    const colors = [
-      "bg-secondary",
-      "bg-success",
-      "bg-danger",
-      "bg-warning",
-      "bg-info",
-      //   "bg-light",
-      "bg-dark",
-    ];
-    return colors[Math.floor(Math.random() * colors.length)];
-  }
-
+function RandomQuote({ quote, color, onChangeQuote }) {
   return (
     <div className="container mt-2">
       <div className={`card text-white ${color}`}>
@@ -61,7 +12,7 @@ function RandomQuote() {
             {quote.author}
           </footer>
         </div>
-        <button className="btn btn-primary mt-3" onClick={getRandomQuote}>
+        <button className="btn btn-primary mt-3" onClick={onChangeQuote}>
           Get random quote
         </button>
       </div>
