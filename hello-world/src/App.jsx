@@ -45,6 +45,15 @@ function App() {
     });
     setGroceriesItems(updatedItems);
   }
+
+  function handleRemoveItem(id) {
+    const updatedItems = groceriesItems.filter((item) => item.id != id);
+    setGroceriesItems(updatedItems);
+  }
+
+  const totalItems = groceriesItems.length;
+  const totalBought = groceriesItems.filter((item) => item.bought).length;
+
   // const groceries = [
   //   { id: Date.now(), text: "Apples", bought: false },
   //   { id: Date.now(), text: "Pear", bought: false },
@@ -58,8 +67,12 @@ function App() {
         handleOnSubmit={handleOnSubmit}
         item={groceryInput}
       />
-      <GroceryList items={groceriesItems} handleOnToggle={toggleBought} />
-      <GroceryFooter />
+      <GroceryList
+        items={groceriesItems}
+        handleOnToggle={toggleBought}
+        handleRemoveItem={handleRemoveItem}
+      />
+      <GroceryFooter totalBought={totalBought} totalItems={totalItems} />
     </div>
   );
 }
