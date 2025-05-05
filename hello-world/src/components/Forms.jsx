@@ -19,7 +19,15 @@ function NameForm() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log("Event:::", event.target);
+
+    if (formData.name && formData.age && formData.profession) {
+      setProfiles((prevProfiles) => [...prevProfiles, formData]);
+      setFormData({
+        name: "",
+        age: "",
+        profession: "",
+      });
+    } else alert("Please fill the fields");
   }
 
   return (
@@ -57,13 +65,15 @@ function NameForm() {
         </div>
         <button className="btn btn-primary mt-2">Submit</button>
       </form>
-      {/* <ul>
-        {names.map((nameItem, index) => (
-          <li key={index} className="list-group-item">
-            {nameItem}
-          </li>
-        ))}
-      </ul> */}
+      {profiles.map((profile, index) => (
+        <div key={index} className="card mt-3">
+          <div className="card-body">
+            <h5 className="card-title">{profile.name}</h5>
+            <p className="card-text">Age: {profile.age}</p>
+            <p className="card-text">Profession: {profile.profession}</p>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
