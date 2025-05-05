@@ -1,4 +1,4 @@
-function GroceryList({ items }) {
+function GroceryList({ items, handleOnToggle }) {
   return (
     <div>
       {items.map((item) => (
@@ -8,13 +8,16 @@ function GroceryList({ items }) {
         >
           <div className="d-flex align-items-center">
             <div
+              onClick={() => handleOnToggle(item.id)}
               style={{ height: "20px", width: "20px" }}
               className="rounded-circle me-2 bg-success"
             ></div>
             <span>
               <p className="display-6 pt-2">{item.text}</p>
             </span>
-            <button className="btn btn-danger ms-5">delete</button>
+            <button className="btn btn-danger ms-5">
+              <i className="bi bi-trash"></i>
+            </button>
           </div>
         </div>
       ))}
