@@ -30,11 +30,26 @@ function App() {
     setGroceriesItems([newGrocery, ...groceriesItems]);
     setGroceryInput("");
   }
-  const groceries = [
-    { id: Date.now(), text: "Apples", bought: false },
-    { id: Date.now(), text: "Pear", bought: false },
-    { id: Date.now(), text: "Bananas", bought: false },
-  ];
+
+  function toggleBought(id) {
+    const updatedItems = groceriesItems.map((item) => {
+      if (item.id === id) {
+        console.log(
+          `Toggling item ${id}: currently ${
+            item.bought ? "bought" : "not bought"
+          }`
+        );
+        return { ...item, bought: !item.bought };
+      }
+      return item;
+    });
+    setGroceriesItems(updatedItems);
+  }
+  // const groceries = [
+  //   { id: Date.now(), text: "Apples", bought: false },
+  //   { id: Date.now(), text: "Pear", bought: false },
+  //   { id: Date.now(), text: "Bananas", bought: false },
+  // ];
   return (
     <div className="container pt-2">
       <GroceryNav />
@@ -43,7 +58,7 @@ function App() {
         handleOnSubmit={handleOnSubmit}
         item={groceryInput}
       />
-      <GroceryList items={groceriesItems} />
+      <GroceryList items={groceriesItems} handleOnToggle={toggleBought} />
       <GroceryFooter />
     </div>
   );
