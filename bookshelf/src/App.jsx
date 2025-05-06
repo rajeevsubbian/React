@@ -4,9 +4,15 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 
 function App() {
-  return <NavBar />;
+  return (
+    <div>
+      <NavBar />
+      <Footer />
+    </div>
+  );
 }
 
 export default App;
