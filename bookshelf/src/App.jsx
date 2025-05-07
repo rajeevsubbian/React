@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import { useState } from "react";
 import { useEffect } from "react";
+import BookList from "./components/BookList";
 
 function App() {
   //url: https://www.googleapis.com/books/v1/volumes?q=javascript
@@ -31,6 +32,7 @@ function App() {
   return (
     <>
       <NavBar onSearch={handleSearch} />
+      <BookList books={books} />
       <Footer />
     </>
   );
