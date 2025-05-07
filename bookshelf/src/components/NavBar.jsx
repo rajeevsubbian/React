@@ -1,12 +1,14 @@
 import React from "react";
+import SearchBar from "./SearchBar";
 
-function NavBar() {
+function NavBar({ onSearch }) {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
           BookShelf
         </a>
+        <SearchBar onSearch={onSearch} />
       </div>
     </nav>
   );
