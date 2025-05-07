@@ -8,25 +8,29 @@ import { useEffect } from "react";
 function App() {
   //url: https://www.googleapis.com/books/v1/volumes?q=javascript
   const [books, setBooks] = useState([]);
-  const [query, setQuery] = useState("Python");
+  const [searchTerm, setSearchTerm] = useState("Python");
 
   useEffect(() => {
     fetchBooks();
     // console.log("BOOKS::", books);
-  }, [query]);
+  }, [searchTerm]);
 
   const fetchBooks = async () => {
     const res = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${query}`
+      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`
     );
     const data = await res.json();
     setBooks(data.items || []);
     console.log("BOOKS fetched:", data.items); // ✅ this logs the correct books
   };
 
+  function handleSearch(query) {
+    setSearchTerm(query);
+  }
+
   return (
     <>
-      <NavBar />
+      <NavBar onSearch={handleSearch} />
       <Footer />
     </>
   );
