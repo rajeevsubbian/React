@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import { useState } from "react";
 import { useEffect } from "react";
 import BookList from "./components/BookList";
+import fetchBooks from "./services/api-client";
 
 function App() {
   //url: https://www.googleapis.com/books/v1/volumes?q=javascript
@@ -13,19 +14,29 @@ function App() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetchBooks();
+    fetchData();
     // console.log("BOOKS::", books);
   }, [searchTerm]);
 
-  const fetchBooks = async () => {
+  const fetchData = async () => {
     setLoading(true);
-    const res = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`
-    );
-    const data = await res.json();
-    setBooks(data.items || []);
-    setLoading(false);
-    console.log("BOOKS fetched:", data.items); // ✅ this logs the correct books
+    try {
+      const items = await fetchBooks(searchTerm);
+      setBooks(items);
+      setLoading(false);
+    } catch (error) {
+      if (error.name === "AbortError") {
+        console.log("Failed to fetch books:", error);
+      }
+    } finally {
+      setLoading(false);
+    }
+    // const res = await fetch(
+    //   `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`
+    // );
+    // const data = await res.json();
+
+    // console.log("BOOKS fetched:", data.items); // ✅ this logs the correct books
   };
 
   function handleSearch(query) {
