@@ -10,6 +10,7 @@ function App() {
   //url: https://www.googleapis.com/books/v1/volumes?q=javascript
   const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState("Python");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetchBooks();
@@ -17,11 +18,13 @@ function App() {
   }, [searchTerm]);
 
   const fetchBooks = async () => {
+    setLoading(true);
     const res = await fetch(
       `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`
     );
     const data = await res.json();
     setBooks(data.items || []);
+    setLoading(false);
     console.log("BOOKS fetched:", data.items); // ✅ this logs the correct books
   };
 
@@ -32,7 +35,11 @@ function App() {
   return (
     <>
       <NavBar onSearch={handleSearch} />
-      <BookList books={books} />
+      {loading ? (
+        <p className="display-3">Loading</p>
+      ) : (
+        <BookList books={books} />
+      )}
       <Footer />
     </>
   );
