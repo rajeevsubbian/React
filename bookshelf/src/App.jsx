@@ -8,6 +8,7 @@ import BookList from "./components/BookList";
 // import fetchBooks from "./services/api-client";
 import useBooks from "./services/useBooks";
 import { useState } from "react";
+import BookDetail from "./components/BookDetail";
 
 function App() {
   const [selectedBook, setSelectedBook] = useState(null);
@@ -44,7 +45,11 @@ function App() {
   }
 
   function handleSeeMore(book) {
-    setSelectedBook(book);
+    setSelectedBook(book.volumeInfo);
+  }
+
+  function handleCloseModal() {
+    setSelectedBook(null);
   }
 
   return (
@@ -56,9 +61,12 @@ function App() {
         <BookList books={books} onSeeMore={handleSeeMore} />
       )}
 
-      {selectedBook && <p>{selectedBook.volumeInfo.title}</p>}
+      {selectedBook && <p>{selectedBook.title}</p>}
 
       <Footer />
+      {selectedBook && (
+        <BookDetail book={selectedBook} onClose={handleCloseModal} />
+      )}
     </>
   );
 }
