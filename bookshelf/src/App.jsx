@@ -2,13 +2,15 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-import { useState } from "react";
-import { useEffect } from "react";
+// import { useState } from "react";
+// import { useEffect } from "react";
 import BookList from "./components/BookList";
-import fetchBooks from "./services/api-client";
+// import fetchBooks from "./services/api-client";
 import useBooks from "./services/useBooks";
+import { useState } from "react";
 
 function App() {
+  const [selectedBook, setSelectedBook] = useState(null);
   const { books, loading, setSearchTerm } = useBooks("fiction");
 
   // useEffect(() => {
@@ -41,14 +43,21 @@ function App() {
     setSearchTerm(query);
   }
 
+  function handleSeeMore(book) {
+    setSelectedBook(book);
+  }
+
   return (
     <>
       <NavBar onSearch={handleSearch} />
       {loading ? (
         <p className="display-3">Loading</p>
       ) : (
-        <BookList books={books} />
+        <BookList books={books} onSeeMore={handleSeeMore} />
       )}
+
+      {selectedBook && <p>{selectedBook.volumeInfo.title}</p>}
+
       <Footer />
     </>
   );
