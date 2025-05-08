@@ -1,4 +1,4 @@
-function BookCard({ book }) {
+function BookCard({ book, onSeeMore }) {
   return (
     <div className="col-md-4 mb-3">
       <div className="card h-100">
@@ -10,7 +10,7 @@ function BookCard({ book }) {
         <div className="card-body">
           <h5 className="card-title">{book.volumeInfo.title}</h5>
           <p className="card-text">{book.volumeInfo.authors?.join(", ")}</p>
-          <button className="btn btn-primary">See More</button>
+          <button onClick={() => onSeeMore(book)} className="btn btn-primary">See More</button>
         </div>
       </div>
     </div>
