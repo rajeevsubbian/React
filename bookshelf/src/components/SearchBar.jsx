@@ -6,6 +6,7 @@ function SearchBar({ onSearch }) {
   function handleSubmit(event) {
     event.preventDefault();
     onSearch(searchTerm);
+    setSearchTerm(""); // Clear the input field after submitting
   }
 
   return (
